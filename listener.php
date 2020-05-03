@@ -9,7 +9,7 @@
 	}
 
 	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, 'https://ipnpb.sandbox.paypal.com/cgi-bin/webscr');
+	curl_setopt($ch, CURLOPT_URL, '');
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
@@ -18,7 +18,7 @@
 	$response = curl_exec($ch);
 	curl_close($ch);
 
-	if ($response == "VERIFIED" && $_POST['receiver_email'] == "rohitchatla@gmail.com") {
+	if ($response == "VERIFIED" && $_POST['receiver_email'] == "") {
 		$cEmail = $_POST['payer_email'];
 		$name = $_POST['first_name'] . " " . $_POST['last_name'];
 
@@ -27,7 +27,7 @@
 		$item = $_POST['item_number'];
 		$paymentStatus = $_POST['payment_status'];
 
-		if ($item == "wordpressPlugin" && $currency == "USD" && $paymentStatus == "Completed" && $price == 67) {
+		if ($item == "wordpressPlugin" && $currency == "INR" && $paymentStatus == "Completed" && $price == 67) {
 			$mail = new PHPMailer();
 
 			$mail->setFrom("your-email@hotmail.com", "Sales");
